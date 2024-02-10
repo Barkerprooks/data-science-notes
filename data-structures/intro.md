@@ -1,5 +1,5 @@
 # Data Structures
-Three basic data structures or "containers" in python:
+Four basic data structures or "containers" in python:
 - List
 - Tuple
 - Set
