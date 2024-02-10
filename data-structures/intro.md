@@ -5,6 +5,15 @@ Four basic data structures or "containers" in python:
 - Set
 - Dictionary
 
+### Containers
+A container is just a bunch of variables. Sometimes, it's useful to know exactly how many variables there are. you can get that from _ANY_ collection using this function `len()`:
+
+```python
+collection = ... # collection of 5 items
+length = len(collection) # the len() function
+print(length) # outputs: 5
+```
+
 ### Lists
 Ordered set of values. they stay in the same order that you put them in
 
