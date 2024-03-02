@@ -41,4 +41,10 @@ for x in xs:
 # together like this:
 for i, x in enumerate(xs):
     print(i, x)
+
+
+xs = [1, 3, 5, 9]
+
+for i in range(4):
+    print()
 ```
