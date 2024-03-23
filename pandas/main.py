@@ -1,10 +1,16 @@
+# example code:
+
 import pandas as pd
 
-df = pd.read_csv("diabetes.csv")
-rows, cols = df.shape
+grades = [] # store grades in a list
 
-xs = [1, 2, 3, 4, 5, 6, 7]
-first3 = xs[:3]
-last3 = xs[3:]
-mid3 = xs[2:5]
+# ask the user 5 times
+for i in range(5):
+    grade = input("enter a grade: ")
+    grades.append(int(grade))
 
+df = pd.DataFrame(grades)
+
+print(df.mean())
+print(df.median())
+print(df.mode())
