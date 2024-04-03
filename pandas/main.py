@@ -1,5 +1,4 @@
 # example code:
-
 import pandas as pd
 
 grades = [] # store grades in a list
