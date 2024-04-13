@@ -1,5 +1,5 @@
 # Dicts (Dictionaries)
-An unordered collection of variables. Instead of each variable having a name (like in `x = 23`, the name of the variable is `x`), each variable has a "slot" in the dictionary. each slot IS a value (like `1`, `99`, `"hello"`, `True`, etc...). So a dictionary is a mapping of two values. One is the "key" or index, or "slot". the other is the true "value" that is being stored. You can think of the "key" value as the variable's name
+An unordered collection of variables. Instead of each variable having a name (like in `x = 23`, the name of the variable is `x`), each variable has a "slot" in the dictionary. each slot IS a value (like `1`, `99`, `"hello"`, `True`, etc...). So a dictionary is a mapping of two values. One is the "key" or index, or "slot". the other is the "value" that is being stored. You can think of the "key" value as the variable's name
 
 ```python
 xs = {} # create an empty dict
@@ -7,7 +7,7 @@ xs = {} # create an empty dict
 config['theme'] = 'light'
 
 xs["hello"] = "world" # we can create a new slot like this
-...
+
 x = xs["hello"] # then we can extract it later using the
                 # same "key" value
 
