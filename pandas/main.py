@@ -1,15 +1,24 @@
-# example code:
+import random
 import pandas as pd
+import matplotlib.pyplot as plt
 
-grades = [] # store grades in a list
+delays = pd.read_csv('pandas/airline.csv')
+coordinates = pd.read_csv("pandas/coordinates.csv")
 
-# ask the user 5 times
-for i in range(5):
-    grade = input("enter a grade: ")
-    grades.append(int(grade))
+print('part 1: loaded CSV file, # of rows:', len(delays.index))
 
-df = pd.DataFrame(grades)
+f1 = delays['airport_name'].str.contains('TX')
+f2 = delays['airport_name'].str.contains('TN')
 
-print(df.mean())
-print(df.median())
-print(df.mode())
+print('part 3: list of Texas and Tennessee:', delays[f1 | f2])
+
+flights = delays + coordinates # merge the datasets
+
+fig, ax = plt.subplots()
+x = coordinates['long']
+y = coordinates['lat']
+
+print(x)
+
+ax.scatter(x, y)
+plt.show()
