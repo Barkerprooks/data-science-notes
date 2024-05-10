@@ -50,6 +50,13 @@ for key in xs:
 # b
 # c
 
+for value in xs.values():
+    print(value)
+
+# 1
+# 2
+# 3
+
 for key, value in xs.items():
     print(key, value)
 

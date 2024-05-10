@@ -25,7 +25,8 @@ table = pd.read_csv("pandas/airline.csv")
 # 2. Display all Texas and Tennessee airports
 texas_rows = table.airport_name.str.contains('TX')
 tennessee_rows = table.airport_name.str.contains('TN')
-print(table.loc[tennessee_rows | texas_rows]['airport_name'])
+rows = table.loc[tennessee_rows | texas_rows]['airport_name']
+print(rows)
 
 # 3. Display how many arrivals into JFK in 2019 encountered both weather and carrier delays.
 jfk = table.airport == "JFK"
@@ -33,4 +34,5 @@ year = table.year == 2019
 weather = table.weather_delay > 0
 carrier = table.carrier_delay > 0
 
-print(table.loc[jfk & year & weather & carrier])
+rows = table.loc[jfk & year & weather & carrier]
+print(rows)
