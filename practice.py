@@ -67,22 +67,107 @@ def letter_counter(letters):
 # grades_1 = {  'Science': 80, 'English': 70,'Math': 80, 'History': 78 }
 
 
-def calculate_gpa(grades):
-    return 0
+# def calculate_gpa(grades):
+
+#     number_of_grades = 0
+#     total_grades = 0
+
+#     for subject_grades in grades.values():
+#         number_of_grades += len(subject_grades)
+#         total_grades += sum(subject_grades)
+    
+#     return total_grades / number_of_grades
 
 
-grades = { 
-    'Science': [80, 70, 88, 90], 
-    'English': [70, 79, 62, 90, 92], 
-    'Math': [80, 82, 81, 90, 90], 
-    'History': [78, 84, 96, 100] 
-}
+# grades = { 
+#     'Science': [80, 70, 88, 90], 
+#     'English': [70, 79, 62, 90, 92], 
+#     'Math': [80, 82, 81, 90, 90],
+#     'History': [78, 84, 96, 100] 
+# }
 
-gpa = calculate_gpa(grades)
+# gpa = calculate_gpa(grades)
 
-for subject, subject_grades in grades.items():
-    print('subject:', subject)
-    for i, grade in enumerate(subject_grades):
-        print(f'grade {i + 1}: {grade}%')
+# for subject, subject_grades in grades.items():
+#     print('subject:', subject)
+#     for i, grade in enumerate(subject_grades):
+#         print(f'grade {i + 1}: {grade}%')
 
-print('GPA:', gpa)
+# print('GPA:', gpa)
+
+
+salaries = [
+    {"name": "bob", "salary": 60000, "title": "IT"},
+    {"name": "joe", "salary": 70000, "title": 'HR'},
+    {"name": "sally", "salary": 90000, "title": "Developer"},
+    {"name": "jim", "salary": 78000, "title": 'HR'},
+    {"name": "bart", "salary": 30000, "title": 'HR'},
+    {"name": "sarah", "salary": 60030, "title": "IT"},
+    {"name": "frank", "salary": 90400, "title": "Developer"},
+]
+
+
+def find_highest_paid_employee(salaries):
+    highest_salary = 0
+    highest_name = "no one"
+    for employee in salaries:
+        if employee["salary"] > highest_salary:
+            highest_salary = employee["salary"]
+            highest_name = employee["name"]
+    return highest_name
+
+
+def find_lowest_paid_employee(salaries):
+    lowest_salary = 1e99
+    lowest_name = "no one"
+    for employee in salaries:
+        if employee["salary"] < lowest_salary:
+            lowest_salary = employee["salary"]
+            lowest_name = employee["name"]
+    return lowest_name
+
+
+
+def get_total_salaries(salaries):
+    total_salaries = {}
+    for employee in salaries:
+        title = employee["title"]
+        salary = employee["salary"]
+        if total_salaries.get(title):
+            total_salaries[title].append(salary)
+        else:
+            total_salaries[title] = [ salary ]
+    return total_salaries
+
+
+def find_highest_paid_title(salaries):
+    highest_avg_salary = 0
+    highest_avg_title = "no one"
+    
+    for title, title_salaries in get_total_salaries(salaries).items():
+        avg_salary = sum(title_salaries) / len(title_salaries)
+        if highest_avg_salary < avg_salary:
+            highest_avg_salary = avg_salary
+            highest_avg_title = title
+
+    return highest_avg_title, highest_avg_salary
+
+
+def find_lowest_paid_title(salaries):
+    lowest_avg_salary = 1e99
+    lowest_avg_title = "no one"
+    
+    for title, title_salaries in get_total_salaries(salaries).items():
+        avg_salary = sum(title_salaries) / len(title_salaries)
+        if lowest_avg_salary > avg_salary:
+            lowest_avg_salary = avg_salary
+            lowest_avg_title = title
+
+    return lowest_avg_title, lowest_avg_salary
+
+
+print("Employee Report")
+print("Highest paid title:", find_highest_paid_title(salaries))
+print("Lowest paid title:", find_lowest_paid_title(salaries))
+print("Highest paid:", find_highest_paid_employee(salaries))
+print("Lowest paid:", find_lowest_paid_employee(salaries))
