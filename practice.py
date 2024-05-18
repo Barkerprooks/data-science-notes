@@ -166,8 +166,99 @@ def find_lowest_paid_title(salaries):
     return lowest_avg_title, lowest_avg_salary
 
 
-print("Employee Report")
-print("Highest paid title:", find_highest_paid_title(salaries))
-print("Lowest paid title:", find_lowest_paid_title(salaries))
-print("Highest paid:", find_highest_paid_employee(salaries))
-print("Lowest paid:", find_lowest_paid_employee(salaries))
+# print("Employee Report")
+# print("Highest paid title:", find_highest_paid_title(salaries))
+# print("Lowest paid title:", find_lowest_paid_title(salaries))
+# print("Highest paid:", find_highest_paid_employee(salaries))
+# print("Lowest paid:", find_lowest_paid_employee(salaries))
+
+
+
+
+
+# Return the "centered" average of an array of ints, which we'll say 
+# is the mean average of the values, except ignoring the largest and 
+# smallest values in the array. If there are multiple copies of the
+# smallest value, ignore just one copy, and likewise for the largest 
+# value. Use int division to produce the final average. You may assume that the array is length 3 or more.
+def centered_average(numbers):
+    centered_numbers = []
+    smallest = min(numbers)
+    biggest = max(numbers)
+
+    for number in numbers:
+        if smallest == number:
+            continue
+        if biggest == number:
+            continue
+        centered_numbers.append(numbers)
+
+    return sum(centered_numbers) / len(centered_numbers)
+
+
+
+class DataRow:
+    def __init__(self, name, salary, title):
+        self.name = name
+        self.salary = salary
+        self.title = title
+
+    def __str__(self):
+        return f'name: {self.name}, salary: {self.salary}, job title: {self.title}'
+    
+d = {"name": "bob", "salary": 60000, "title": "IT"}
+print(d["name"])
+
+r = DataRow("bob", 60000, "IT")
+print(r.name)
+
+salaries = [
+    DataRow("bob", 60000, "IT"),
+    DataRow("joe", 70000, 'HR'),
+    DataRow("sally", 90000, "Developer"),
+    DataRow("jim", 78000, 'HR'),
+    DataRow("bart", 30000, 'HR'),
+    DataRow("sarah", 60030, "IT"),
+    DataRow("frank", 90400, "Developer"),
+]
+
+def find_highest_paid_employee(salaries):
+    highest_salary = 0
+    highest_name = "no one"
+    for employee in salaries:
+        if employee.salary > highest_salary:
+            highest_salary = employee.salary
+            highest_name = employee.name
+    return highest_name
+
+def find_smallest_paid_employee(salaries):
+    smallest_found = salaries[0]
+    for employee in salaries:
+        if employee.salary < smallest_found.salary:
+            smallest_found = employee
+    return smallest_found
+
+
+def get_total_salaries(salaries):
+    total_salaries = {}
+    for employee in salaries:
+        title = employee.title
+        salary = employee.salary
+        if total_salaries.get(title):
+            total_salaries[title].append(salary)
+        else:
+            total_salaries[title] = [ salary ]
+    return total_salaries
+
+
+def find_highest_paid_title(salaries):
+    highest_avg_salary = 0
+    highest_avg_title = "no one"
+    
+    for title, title_salaries in get_total_salaries(salaries).items():
+        avg_salary = sum(title_salaries) / len(title_salaries)
+        if highest_avg_salary < avg_salary:
+            highest_avg_salary = avg_salary
+            highest_avg_title = title
+
+    return highest_avg_title, highest_avg_salary
